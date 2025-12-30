@@ -16,60 +16,68 @@ export const SkillsSection = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding bg-card/30">
       <div className="section-container">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
         >
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Expertise</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-            Technical Skills
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            A comprehensive toolkit spanning data science, software development, and business intelligence
-          </p>
-        </motion.div>
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-8">
+            <span className="text-primary font-mono text-sm">02.</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Skills</h2>
+            <div className="flex-1 h-px bg-border ml-4" />
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillCategories.map((category, categoryIndex) => {
-            const Icon = iconMap[category.icon] || Code2;
-            
-            return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                className="card-base card-hover p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-foreground">{category.title}</h3>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.3, delay: 0.3 + categoryIndex * 0.1 + skillIndex * 0.05 }}
-                      className="skill-badge"
+          <div className="terminal-window">
+            <div className="terminal-header">
+              <div className="terminal-dot terminal-dot-red" />
+              <div className="terminal-dot terminal-dot-yellow" />
+              <div className="terminal-dot terminal-dot-green" />
+              <span className="ml-4 text-xs text-muted-foreground font-mono">skills.json</span>
+            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {skillCategories.map((category, categoryIndex) => {
+                  const Icon = iconMap[category.icon] || Code2;
+                  
+                  return (
+                    <motion.div
+                      key={category.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
+                      className="p-4 rounded-lg bg-background/50 border border-border"
                     >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+                          <Icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <h3 className="font-mono text-sm text-foreground">{category.title}</h3>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill, skillIndex) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.2, delay: 0.2 + categoryIndex * 0.1 + skillIndex * 0.03 }}
+                            className="skill-badge"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

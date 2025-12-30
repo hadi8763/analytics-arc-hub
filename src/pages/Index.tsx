@@ -1,5 +1,6 @@
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import { Sidebar } from '@/components/Sidebar';
+import { TopBar } from '@/components/TopBar';
+import { SocialBar } from '@/components/SocialBar';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { SkillsSection } from '@/sections/SkillsSection';
@@ -14,22 +15,19 @@ const Index = () => {
   useEffect(() => {
     document.title = 'Abdullah Al Hadi | Data Science Portfolio';
     
-    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics. View projects, research publications, and professional experience.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics. View projects, research publications, and professional experience.';
-      document.head.appendChild(meta);
+      metaDescription.setAttribute('content', 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics.');
     }
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
+      <Sidebar />
+      <TopBar />
+      <SocialBar />
+      
+      <main className="lg:ml-[220px] pt-12">
         <HeroSection />
         <AboutSection />
         <SkillsSection />
@@ -38,8 +36,14 @@ const Index = () => {
         <ExperienceSection />
         <EducationSection />
         <ContactSection />
+        
+        {/* Footer */}
+        <footer className="py-8 text-center border-t border-border">
+          <p className="text-muted-foreground font-mono text-sm">
+            © 2025 Abdullah Al Hadi. Built with React & Tailwind CSS
+          </p>
+        </footer>
       </main>
-      <Footer />
     </div>
   );
 };

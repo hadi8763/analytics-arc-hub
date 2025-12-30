@@ -1,118 +1,117 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, ExternalLink, Sparkles } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
+import { TechMarquee } from '@/components/TechMarquee';
 
 export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ background: 'var(--gradient-hero)' }}
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="section-container relative z-10 py-20 md:py-0">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+      <div className="section-container relative z-10 py-20 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Terminal Code Block */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-8"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Available for Opportunities</span>
+            <div className="terminal-window max-w-md">
+              <div className="terminal-header">
+                <div className="terminal-dot terminal-dot-red" />
+                <div className="terminal-dot terminal-dot-yellow" />
+                <div className="terminal-dot terminal-dot-green" />
+              </div>
+              <div className="terminal-body leading-relaxed">
+                <p>
+                  <span className="code-keyword">class</span>{' '}
+                  <span className="code-class">Developer</span>{' '}
+                  <span className="code-punctuation">{'{'}</span>
+                </p>
+                <p className="pl-4">
+                  <span className="code-keyword">constructor</span>
+                  <span className="code-punctuation">()</span>{' '}
+                  <span className="code-punctuation">{'{'}</span>
+                </p>
+                <p className="pl-8">
+                  <span className="code-property">this</span>
+                  <span className="code-punctuation">.</span>
+                  <span className="code-property">name</span>
+                  <span className="code-punctuation"> = </span>
+                  <span className="code-string">"Abdullah Al Hadi"</span>
+                  <span className="code-punctuation">;</span>
+                </p>
+                <p className="pl-8">
+                  <span className="code-property">this</span>
+                  <span className="code-punctuation">.</span>
+                  <span className="code-property">role</span>
+                  <span className="code-punctuation"> = </span>
+                  <span className="code-string">"Data Scientist"</span>
+                  <span className="code-punctuation">;</span>
+                </p>
+                <p className="pl-8">
+                  <span className="code-property">this</span>
+                  <span className="code-punctuation">.</span>
+                  <span className="code-property">passion</span>
+                  <span className="code-punctuation"> = </span>
+                  <span className="code-string">"Machine Learning"</span>
+                  <span className="code-punctuation">;</span>
+                </p>
+                <p className="pl-4">
+                  <span className="code-punctuation">{'}'}</span>
+                </p>
+                <p>
+                  <span className="code-punctuation">{'}'}</span>
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4"
-          >
-            Abdullah Al Hadi
-          </motion.h1>
-
-          {/* Role */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl md:text-2xl font-medium gradient-text mb-6"
-          >
-            IT Student | Data Science & Analytics
-          </motion.p>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
-          >
-            Turning data into insights through analytics, visualization, and machine learning.
-          </motion.p>
-
-          {/* CTAs */}
+          {/* Right: Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center lg:text-left"
           >
-            <a href="#projects" className="btn-primary">
-              <ExternalLink className="w-4 h-4" />
-              View Projects
-            </a>
-            <a href="/resume.pdf" target="_blank" className="btn-secondary">
-              <Download className="w-4 h-4" />
-              Download Resume
-            </a>
-          </motion.div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="text-foreground">BUILDING THE </span>
+              <span className="gradient-text glow-text">FUTURE</span>
+            </h1>
+            
+            <p className="text-lg text-muted-foreground mb-8 max-w-lg">
+              Transforming complex data into{' '}
+              <span className="text-primary">actionable insights</span> and ideas into{' '}
+              <span className="text-primary">scalable applications</span>.
+            </p>
 
-          {/* Tech badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-3"
-          >
-            {['Python', 'SQL', 'Tableau', 'Power BI', 'Machine Learning'].map((tech, index) => (
-              <motion.span
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
-                className="px-3 py-1 rounded-full bg-card text-muted-foreground text-sm border border-border"
-              >
-                {tech}
-              </motion.span>
-            ))}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="#projects" className="btn-primary">
+                View Projects
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#contact" className="btn-secondary">
+                Contact Me
+              </a>
+            </div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.a
-            href="#about"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-          >
-            <span className="text-xs font-medium">Scroll</span>
-            <ArrowDown className="w-4 h-4" />
-          </motion.a>
-        </motion.div>
       </div>
+
+      {/* Tech Marquee */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="absolute bottom-0 left-0 right-0"
+      >
+        <TechMarquee />
+      </motion.div>
     </section>
   );
 };
