@@ -1,12 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
+import { HeroSection } from '@/sections/HeroSection';
+import { AboutSection } from '@/sections/AboutSection';
+import { SkillsSection } from '@/sections/SkillsSection';
+import { ProjectsSection } from '@/sections/ProjectsSection';
+import { ResearchSection } from '@/sections/ResearchSection';
+import { ExperienceSection } from '@/sections/ExperienceSection';
+import { EducationSection } from '@/sections/EducationSection';
+import { ContactSection } from '@/sections/ContactSection';
+import { useEffect } from 'react';
 
 const Index = () => {
+  useEffect(() => {
+    document.title = 'Abdullah Al Hadi | Data Science Portfolio';
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics. View projects, research publications, and professional experience.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics. View projects, research publications, and professional experience.';
+      document.head.appendChild(meta);
+    }
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ResearchSection />
+        <ExperienceSection />
+        <EducationSection />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   );
 };
