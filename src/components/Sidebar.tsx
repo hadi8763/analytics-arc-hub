@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, User, Code2, FolderKanban, FileText, Briefcase, 
   GraduationCap, Mail, Download, Github, Linkedin, 
-  ChevronRight, Menu, X, Circle
+  Menu, X, Circle
 } from 'lucide-react';
 
 const navItems = [
@@ -20,6 +20,25 @@ const navItems = [
 export const Sidebar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => item.href.replace('#', ''));
+      for (const section of sections.reverse()) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleClick = (href: string) => {
     setActiveSection(href.replace('#', ''));

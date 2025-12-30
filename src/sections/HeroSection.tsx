@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { TechMarquee } from '@/components/TechMarquee';
 
 export const HeroSection = () => {
@@ -10,7 +10,7 @@ export const HeroSection = () => {
     >
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="section-container relative z-10 py-20 lg:py-0">
@@ -79,8 +79,9 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-center lg:text-left"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-foreground">BUILDING THE </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+              <span className="text-foreground">BUILDING </span>
+              <span className="text-muted-foreground">THE </span>
               <span className="gradient-text glow-text">FUTURE</span>
             </h1>
             
