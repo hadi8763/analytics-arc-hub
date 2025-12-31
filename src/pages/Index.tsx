@@ -4,6 +4,7 @@ import { SocialBar } from '@/components/SocialBar';
 import { CustomCursor } from '@/components/CustomCursor';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { ScrollProgress } from '@/components/ScrollProgress';
+import { SplashScreen } from '@/components/SplashScreen';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { SkillsSection } from '@/sections/SkillsSection';
@@ -12,9 +13,12 @@ import { ResearchSection } from '@/sections/ResearchSection';
 import { ExperienceSection } from '@/sections/ExperienceSection';
 import { EducationSection } from '@/sections/EducationSection';
 import { ContactSection } from '@/sections/ContactSection';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     document.title = 'Abdullah Al Hadi | Data Science Portfolio';
     
@@ -25,32 +29,47 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <CustomCursor />
-      <ParticleBackground />
-      <ScrollProgress />
-      <Sidebar />
-      <TopBar />
-      <SocialBar />
+    <>
+      {isLoading && <SplashScreen onComplete={() => setIsLoading(false)} />}
       
-      <main className="lg:ml-[220px] pt-12 relative z-10">
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ResearchSection />
-        <ExperienceSection />
-        <EducationSection />
-        <ContactSection />
+      <motion.div 
+        className="min-h-screen bg-background"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <CustomCursor />
+        <ParticleBackground />
+        <ScrollProgress />
+        <Sidebar />
+        <TopBar />
+        <SocialBar />
         
-        {/* Footer */}
-        <footer className="py-8 text-center border-t border-border">
-          <p className="text-muted-foreground font-mono text-sm hover-glow">
-            © 2025 Abdullah Al Hadi. Built with React & Tailwind CSS
-          </p>
-        </footer>
-      </main>
-    </div>
+        <main className="lg:ml-[220px] pt-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 20 : 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <HeroSection />
+            <AboutSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ResearchSection />
+            <ExperienceSection />
+            <EducationSection />
+            <ContactSection />
+            
+            {/* Footer */}
+            <footer className="py-8 text-center border-t border-border">
+              <p className="text-muted-foreground font-mono text-sm hover-glow">
+                © 2025 Abdullah Al Hadi. Built with React & Tailwind CSS
+              </p>
+            </footer>
+          </motion.div>
+        </main>
+      </motion.div>
+    </>
   );
 };
 
