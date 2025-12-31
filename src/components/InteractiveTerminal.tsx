@@ -9,14 +9,25 @@ const ASCII_ART = `
 /_/   \\_\\_.__/ \\__,_|\\__,_|_|_|\\__,_|_| |_|
 `;
 
-const commands: Record<string, string> = {
+const KONAMI_CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+const commands: Record<string, string | (() => string)> = {
   help: `Available commands:
   about     - Learn about me
   skills    - View my technical skills  
   projects  - See my projects
   contact   - Get my contact info
   education - View my education
-  clear     - Clear terminal`,
+  clear     - Clear terminal
+  
+  🥚 Easter eggs (try these!):
+  matrix    - Enter the matrix
+  hack      - Initiate hack sequence
+  coffee    - Get coffee status
+  sudo      - Super user mode
+  whoami    - Who are you?
+  fortune   - Get your fortune
+  cowsay    - Moo!`,
   about: `> Abdullah Al Hadi
   Final-year CS student majoring in Data Science
   Location: Kedah, Malaysia
@@ -39,6 +50,86 @@ const commands: Record<string, string> = {
   B.Sc Computer Science (Data Science)
   Albukhary International University
   Expected Graduation: March 2026`,
+  
+  // Easter egg commands
+  matrix: `
+  ░█▀▄▀█ ░█▀▀█ ▀▀█▀▀ ░█▀▀█ ▀█▀ ▀▄▀ 
+  ░█░█░█ ░█▄▄█ ─░█── ░█▄▄▀ ░█─ ─█─ 
+  ░█──░█ ░█─░█ ─░█── ░█─░█ ▄█▄ ▄▀▄
+  
+  Wake up, Neo...
+  The Matrix has you...
+  Follow the white rabbit. 🐇`,
+  
+  hack: () => {
+    const messages = [
+      '> Initializing hack sequence...',
+      '> Bypassing firewall... [████████████] 100%',
+      '> Accessing mainframe...',
+      '> Decrypting data... [████████████] 100%',
+      '> Just kidding! I\'m a nice developer 😄',
+      '> But that was fun, right?'
+    ];
+    return messages.join('\n  ');
+  },
+  
+  coffee: () => {
+    const coffeeLevel = Math.floor(Math.random() * 100);
+    const cups = '☕'.repeat(Math.ceil(coffeeLevel / 20));
+    return `> Coffee Level: ${coffeeLevel}%\n  ${cups}\n  ${coffeeLevel < 30 ? '⚠️ DANGER: Need more coffee!' : coffeeLevel > 70 ? '✨ Fully caffeinated!' : '🔄 Getting there...'}`;
+  },
+  
+  sudo: `> [sudo] password for guest: ********
+  Nice try! You're not root here 😏
+  This incident will be reported... to no one.`,
+  
+  whoami: `> guest@abdullah.dev
+  Role: Curious Visitor
+  Status: Awesome for finding this!
+  Powers: Reading code, clicking things`,
+  
+  fortune: () => {
+    const fortunes = [
+      '🔮 You will write bug-free code today... just kidding.',
+      '🎯 A great opportunity awaits in your terminal.',
+      '💡 The bug you\'re looking for is on line 42.',
+      '🚀 Your next project will be legendary!',
+      '🌟 Stack Overflow will be your friend today.',
+      '🎨 Clean code is in your future.',
+      '☕ Coffee + Code = Magic',
+    ];
+    return `> ${fortunes[Math.floor(Math.random() * fortunes.length)]}`;
+  },
+  
+  cowsay: `
+   _____________________
+  < Moo! Hire Abdullah! >
+   ---------------------
+          \\   ^__^
+           \\  (oo)\\_______
+              (__)\\       )\\/\\
+                  ||----w |
+                  ||     ||`,
+  
+  rm: `> rm: cannot remove '/': Permission denied
+  Nice try! The universe is safe... for now.`,
+  
+  'rm -rf': `> rm: cannot remove '/': Permission denied
+  🛡️ The system has been protected from your chaos!`,
+  
+  exit: `> Goodbye! But you can't really exit a portfolio...
+  Refresh the page if you must leave! 👋`,
+  
+  neofetch: `
+  ▄▀█ █▀▄ █▀▀ █░█
+  █▀█ █▄▀ ██▄ ▀▄▀
+  
+  OS: Abdullah.Dev v1.0
+  Host: Kedah, Malaysia
+  Kernel: React + TypeScript
+  Shell: Interactive Terminal
+  Theme: Cyber Hacker 🌙
+  Terminal: JetBrains Mono`,
 };
 
 export const InteractiveTerminal = () => {
@@ -57,7 +148,8 @@ export const InteractiveTerminal = () => {
       setInput('');
       return;
     } else if (commands[cmd]) {
-      output = commands[cmd];
+      const cmdResult = commands[cmd];
+      output = typeof cmdResult === 'function' ? cmdResult() : cmdResult;
     } else if (cmd) {
       output = `Command not found: ${cmd}. Type 'help' for available commands.`;
     }
