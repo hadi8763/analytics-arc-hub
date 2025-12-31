@@ -1,6 +1,9 @@
 import { Sidebar } from '@/components/Sidebar';
 import { TopBar } from '@/components/TopBar';
 import { SocialBar } from '@/components/SocialBar';
+import { CustomCursor } from '@/components/CustomCursor';
+import { ParticleBackground } from '@/components/ParticleBackground';
+import { ScrollProgress } from '@/components/ScrollProgress';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { SkillsSection } from '@/sections/SkillsSection';
@@ -23,11 +26,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <CustomCursor />
+      <ParticleBackground />
+      <ScrollProgress />
       <Sidebar />
       <TopBar />
       <SocialBar />
       
-      <main className="lg:ml-[220px] pt-12">
+      <main className="lg:ml-[220px] pt-12 relative z-10">
         <HeroSection />
         <AboutSection />
         <SkillsSection />
@@ -39,7 +45,7 @@ const Index = () => {
         
         {/* Footer */}
         <footer className="py-8 text-center border-t border-border">
-          <p className="text-muted-foreground font-mono text-sm">
+          <p className="text-muted-foreground font-mono text-sm hover-glow">
             © 2025 Abdullah Al Hadi. Built with React & Tailwind CSS
           </p>
         </footer>

@@ -177,10 +177,48 @@
   }
 
   .card-hover {
-    @apply hover:-translate-y-1;
+    @apply hover:-translate-y-2;
     &:hover {
       box-shadow: var(--shadow-xl), var(--shadow-glow);
       border-color: hsl(var(--primary) / 0.5);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+  }
+
+  .interactive {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+
+  .interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--foreground)) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 3s ease-in-out infinite;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+    &:hover {
+      text-shadow: 0 0 10px hsl(var(--primary) / 0.8), 0 0 20px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  .border-glow {
+    @apply border transition-all duration-300;
+    &:hover {
+      animation: border-flow 3s ease-in-out infinite;
     }
   }
 

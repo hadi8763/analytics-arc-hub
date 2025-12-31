@@ -100,6 +100,30 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "glitch": {
+          "0%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-2px, 2px)" },
+          "40%": { transform: "translate(-2px, -2px)" },
+          "60%": { transform: "translate(2px, 2px)" },
+          "80%": { transform: "translate(2px, -2px)" },
+          "100%": { transform: "translate(0)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsla(180, 100%, 50%, 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsla(180, 100%, 50%, 0.6)" },
+        },
+        "text-shimmer": {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        "border-flow": {
+          "0%, 100%": { borderColor: "hsl(180, 100%, 45%)" },
+          "50%": { borderColor: "hsl(210, 100%, 50%)" },
+        },
+        "ripple": {
+          "0%": { transform: "scale(0)", opacity: "1" },
+          "100%": { transform: "scale(4)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,6 +134,11 @@ export default {
         "slide-in-right": "slide-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
         float: "float 3s ease-in-out infinite",
+        "glitch": "glitch 0.3s ease-in-out",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "text-shimmer": "text-shimmer 3s ease-in-out infinite",
+        "border-flow": "border-flow 3s ease-in-out infinite",
+        "ripple": "ripple 0.6s linear",
       },
     },
   },
