@@ -5,6 +5,9 @@ import { CustomCursor } from '@/components/CustomCursor';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { ScrollProgress } from '@/components/ScrollProgress';
 import { SplashScreen } from '@/components/SplashScreen';
+import { MatrixRain } from '@/components/MatrixRain';
+import { FloatingShapes } from '@/components/FloatingShapes';
+import { CRTEffect } from '@/components/CRTEffect';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { SkillsSection } from '@/sections/SkillsSection';
@@ -39,7 +42,10 @@ const Index = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <CustomCursor />
+        <MatrixRain />
         <ParticleBackground />
+        <FloatingShapes />
+        <CRTEffect />
         <ScrollProgress />
         <Sidebar />
         <TopBar />
