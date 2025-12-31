@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { TechMarquee } from '@/components/TechMarquee';
+import { GlitchText } from '@/components/GlitchText';
+import { MagneticButton } from '@/components/MagneticButton';
 
 export const HeroSection = () => {
   return (
@@ -11,6 +13,14 @@ export const HeroSection = () => {
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+        <motion.div 
+          className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-primary/3 rounded-full blur-[80px]"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
       </div>
 
       <div className="section-container relative z-10 py-20 lg:py-0">
@@ -21,55 +31,102 @@ export const HeroSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="terminal-window max-w-md">
+            <motion.div 
+              className="terminal-window max-w-md interactive"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
               <div className="terminal-header">
-                <div className="terminal-dot terminal-dot-red" />
-                <div className="terminal-dot terminal-dot-yellow" />
-                <div className="terminal-dot terminal-dot-green" />
+                <motion.div 
+                  className="terminal-dot terminal-dot-red"
+                  whileHover={{ scale: 1.3 }}
+                />
+                <motion.div 
+                  className="terminal-dot terminal-dot-yellow"
+                  whileHover={{ scale: 1.3 }}
+                />
+                <motion.div 
+                  className="terminal-dot terminal-dot-green"
+                  whileHover={{ scale: 1.3 }}
+                />
               </div>
               <div className="terminal-body leading-relaxed">
-                <p>
+                <motion.p
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
                   <span className="code-keyword">class</span>{' '}
                   <span className="code-class">Developer</span>{' '}
                   <span className="code-punctuation">{'{'}</span>
-                </p>
-                <p className="pl-4">
+                </motion.p>
+                <motion.p 
+                  className="pl-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
                   <span className="code-keyword">constructor</span>
                   <span className="code-punctuation">()</span>{' '}
                   <span className="code-punctuation">{'{'}</span>
-                </p>
-                <p className="pl-8">
+                </motion.p>
+                <motion.p 
+                  className="pl-8"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
                   <span className="code-property">this</span>
                   <span className="code-punctuation">.</span>
                   <span className="code-property">name</span>
                   <span className="code-punctuation"> = </span>
-                  <span className="code-string">"Abdullah Al Hadi"</span>
+                  <span className="code-string hover-glow cursor-pointer">"Abdullah Al Hadi"</span>
                   <span className="code-punctuation">;</span>
-                </p>
-                <p className="pl-8">
+                </motion.p>
+                <motion.p 
+                  className="pl-8"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
                   <span className="code-property">this</span>
                   <span className="code-punctuation">.</span>
                   <span className="code-property">role</span>
                   <span className="code-punctuation"> = </span>
-                  <span className="code-string">"Data Scientist"</span>
+                  <span className="code-string hover-glow cursor-pointer">"Data Scientist"</span>
                   <span className="code-punctuation">;</span>
-                </p>
-                <p className="pl-8">
+                </motion.p>
+                <motion.p 
+                  className="pl-8"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.9 }}
+                >
                   <span className="code-property">this</span>
                   <span className="code-punctuation">.</span>
                   <span className="code-property">passion</span>
                   <span className="code-punctuation"> = </span>
-                  <span className="code-string">"Machine Learning"</span>
+                  <span className="code-string hover-glow cursor-pointer">"Machine Learning"</span>
                   <span className="code-punctuation">;</span>
-                </p>
-                <p className="pl-4">
+                </motion.p>
+                <motion.p 
+                  className="pl-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.0 }}
+                >
                   <span className="code-punctuation">{'}'}</span>
-                </p>
-                <p>
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.1 }}
+                >
                   <span className="code-punctuation">{'}'}</span>
-                </p>
+                  <span className="typing-cursor" />
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right: Text Content */}
@@ -80,25 +137,29 @@ export const HeroSection = () => {
             className="text-center lg:text-left"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              <span className="text-foreground">BUILDING </span>
+              <GlitchText text="BUILDING" className="text-foreground" />{' '}
               <span className="text-muted-foreground">THE </span>
-              <span className="gradient-text glow-text">FUTURE</span>
+              <GlitchText text="FUTURE" className="gradient-text glow-text" />
             </h1>
             
             <p className="text-lg text-muted-foreground mb-8 max-w-lg">
               Transforming complex data into{' '}
-              <span className="text-primary">actionable insights</span> and ideas into{' '}
-              <span className="text-primary">scalable applications</span>.
+              <span className="text-primary shimmer-text">actionable insights</span> and ideas into{' '}
+              <span className="text-primary shimmer-text">scalable applications</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a href="#projects" className="btn-primary">
-                View Projects
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#contact" className="btn-secondary">
-                Contact Me
-              </a>
+              <MagneticButton>
+                <a href="#projects" className="btn-primary animate-pulse-glow">
+                  View Projects
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </MagneticButton>
+              <MagneticButton>
+                <a href="#contact" className="btn-secondary border-glow">
+                  Contact Me
+                </a>
+              </MagneticButton>
             </div>
           </motion.div>
         </div>
