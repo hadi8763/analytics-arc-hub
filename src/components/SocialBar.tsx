@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Facebook, Mail } from 'lucide-react';
 
 const socials = [
-  { icon: Github, href: 'https://github.com/abdullahhadi', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/abdullahhadi', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/hadi8763', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/abdullah-al-hadi-005486219', label: 'LinkedIn' },
   { icon: Facebook, href: '#', label: 'Facebook' },
   { icon: Mail, href: 'mailto:abdullahhadi@email.com', label: 'Email' },
 ];
