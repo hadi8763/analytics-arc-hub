@@ -137,7 +137,7 @@ export const Sidebar = () => {
           
           <div className="flex items-center justify-center gap-4 mt-4">
             <motion.a
-              href="https://github.com/abdullahhadi"
+              href="https://github.com/hadi8763"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -147,7 +147,7 @@ export const Sidebar = () => {
               <Github className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="https://linkedin.com/in/abdullahhadi"
+              href="https://www.linkedin.com/in/abdullah-al-hadi-005486219"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
