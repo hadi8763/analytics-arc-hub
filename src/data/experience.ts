@@ -14,20 +14,19 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "ulink-assist",
-    title: "Data Analyst & Operations",
+    title: "AI Automation Intern",
     company: "Ulink Assist Pte. Ltd.",
     location: "Remote, Singapore",
-    type: "Full-time",
+    type: "Internship",
     duration: "Sep 2025 – Present",
     startDate: "2025-09",
     endDate: "Present",
     description: [
-      "Analyzed operational data to identify trends and optimize business processes",
-      "Built comprehensive reports and interactive dashboards using Excel and Power BI",
-      "Supported data-driven decision-making across multiple departments",
-      "Collaborated with cross-functional teams to deliver actionable insights"
+      "Built and deployed chatbots and callbots using Lindy, n8n, and Vapi",
+      "Integrated workflows via APIs/webhooks (verification, routing, escalation)",
+      "Hosted internal bot services on Render and built web UI with React + HTML/CSS"
     ],
-    technologies: ["Excel", "Power BI", "SQL", "Data Analysis"]
+    technologies: ["Lindy", "n8n", "Vapi", "React", "APIs", "Webhooks", "Render"]
   },
   {
     id: "cyres-usm",
