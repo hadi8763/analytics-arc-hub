@@ -24,75 +24,75 @@ export const EducationSection = () => {
         >
           <SectionHeader number={sectionNumbers.education} title="Education" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Education */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              {education.map((edu) => (
-                <TerminalWindow key={edu.id} title="education.json" interactive>
-                  <div className="p-6 -mt-4">
-                    <div className="flex items-start gap-4 mb-6">
-                      <motion.div 
-                        className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <GraduationCap className="w-6 h-6 text-primary" />
-                      </motion.div>
-                      <div>
-                        <h3 className="font-semibold text-foreground">{edu.degree}</h3>
-                        <p className="text-primary font-mono text-sm">{edu.major}</p>
-                        <p className="text-muted-foreground text-sm mt-1">{edu.institution}</p>
-                        <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-muted-foreground font-mono">
-                          <span className="flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
-                            {edu.location}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            Expected: {edu.expectedGraduation}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
+          {/* Education */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-12"
+          >
+            {education.map((edu) => (
+              <TerminalWindow key={edu.id} title="education.json" interactive>
+                <div className="p-6 -mt-4">
+                  <div className="flex items-start gap-4 mb-6">
+                    <motion.div 
+                      className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <GraduationCap className="w-6 h-6 text-primary" />
+                    </motion.div>
                     <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <BookOpen className="w-4 h-4 text-primary" />
-                        <h4 className="font-mono text-sm text-foreground">coursework[]</h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {edu.coursework.map((course, i) => (
-                          <motion.span
-                            key={course}
-                            className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
-                            whileHover={{ scale: 1.1, y: -2 }}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.03 }}
-                          >
-                            {course}
-                          </motion.span>
-                        ))}
+                      <h3 className="font-semibold text-foreground">{edu.degree}</h3>
+                      <p className="text-primary font-mono text-sm">{edu.major}</p>
+                      <p className="text-muted-foreground text-sm mt-1">{edu.institution}</p>
+                      <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-muted-foreground font-mono">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          {edu.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          Expected: {edu.expectedGraduation}
+                        </span>
                       </div>
                     </div>
                   </div>
-                </TerminalWindow>
-              ))}
-            </motion.div>
 
-            {/* Certifications & Achievements */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <BookOpen className="w-4 h-4 text-primary" />
+                      <h4 className="font-mono text-sm text-foreground">coursework[]</h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.coursework.map((course, i) => (
+                        <motion.span
+                          key={course}
+                          className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.03 }}
+                        >
+                          {course}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </TerminalWindow>
+            ))}
+          </motion.div>
+
+          {/* Certifications & Achievements Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Certifications */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: -40 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-6"
             >
-              {/* Certifications */}
               <TerminalWindow title="certifications.json" interactive>
                 <div className="p-6 -mt-4">
                   <div className="flex items-center gap-2 mb-4">
@@ -121,8 +121,14 @@ export const EducationSection = () => {
                   </div>
                 </div>
               </TerminalWindow>
+            </motion.div>
 
-              {/* Achievements */}
+            {/* Achievements */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <TerminalWindow title="achievements.json" interactive>
                 <div className="p-6 -mt-4">
                   <div className="flex items-center gap-2 mb-4">
