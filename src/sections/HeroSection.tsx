@@ -3,8 +3,10 @@ import { ArrowRight } from 'lucide-react';
 import { TechMarquee } from '@/components/TechMarquee';
 import { GlitchText } from '@/components/GlitchText';
 import { MagneticButton } from '@/components/MagneticButton';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 export const HeroSection = () => {
+  const { scrollToSection } = useSmoothScroll({ offset: -80 });
   return (
     <section
       id="home"
@@ -150,15 +152,21 @@ export const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <MagneticButton>
-                <a href="#projects" className="btn-primary animate-pulse-glow">
+                <button 
+                  onClick={() => scrollToSection('projects')} 
+                  className="btn-primary animate-pulse-glow"
+                >
                   View Projects
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </button>
               </MagneticButton>
               <MagneticButton>
-                <a href="#contact" className="btn-secondary border-glow">
+                <button 
+                  onClick={() => scrollToSection('contact')} 
+                  className="btn-secondary border-glow"
+                >
                   Contact Me
-                </a>
+                </button>
               </MagneticButton>
             </div>
           </motion.div>
