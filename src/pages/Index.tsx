@@ -8,6 +8,7 @@ import { SplashScreen } from '@/components/SplashScreen';
 import { MatrixRain } from '@/components/MatrixRain';
 import { FloatingShapes } from '@/components/FloatingShapes';
 import { CRTEffect } from '@/components/CRTEffect';
+import { BackToTop } from '@/components/BackToTop';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
 import { SkillsSection } from '@/sections/SkillsSection';
@@ -18,16 +19,17 @@ import { EducationSection } from '@/sections/EducationSection';
 import { ContactSection } from '@/sections/ContactSection';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { siteConfig } from '@/constants/siteConfig';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = 'Abdullah Al Hadi | Data Science Portfolio';
+    document.title = siteConfig.title;
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics.');
+      metaDescription.setAttribute('content', siteConfig.description);
     }
   }, []);
 
@@ -50,6 +52,7 @@ const Index = () => {
         <Sidebar />
         <TopBar />
         <SocialBar />
+        <BackToTop />
         
         <main className="lg:ml-[220px] pt-12 relative z-10">
           <motion.div
@@ -69,7 +72,7 @@ const Index = () => {
             {/* Footer */}
             <footer className="py-8 text-center border-t border-border">
               <p className="text-muted-foreground font-mono text-sm hover-glow">
-                © 2025 Abdullah Al Hadi. Built with React & Tailwind CSS
+                © 2025 {siteConfig.name}. Built with React & Tailwind CSS
               </p>
             </footer>
           </motion.div>

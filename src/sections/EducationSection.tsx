@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { GraduationCap, MapPin, Calendar, BookOpen, Award, Trophy, BadgeCheck } from 'lucide-react';
 import { education, certifications } from '@/data/experience';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TerminalWindow } from '@/components/TerminalWindow';
+import { TiltCard } from '@/components/TiltCard';
+import { sectionNumbers } from '@/constants/siteConfig';
 
 export const EducationSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { ref, isInView } = useScrollReveal();
 
   const certificationsList = certifications.filter(c => c.type === 'certification');
   const achievementsList = certifications.filter(c => c.type === 'achievement');
@@ -20,12 +22,7 @@ export const EducationSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-primary font-mono text-sm">06.</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Education</h2>
-            <div className="flex-1 h-px bg-border ml-4" />
-          </div>
+          <SectionHeader number={sectionNumbers.education} title="Education" />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Education */}
@@ -35,18 +32,16 @@ export const EducationSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               {education.map((edu) => (
-                <div key={edu.id} className="terminal-window">
-                  <div className="terminal-header">
-                    <div className="terminal-dot terminal-dot-red" />
-                    <div className="terminal-dot terminal-dot-yellow" />
-                    <div className="terminal-dot terminal-dot-green" />
-                    <span className="ml-4 text-xs text-muted-foreground font-mono">education.json</span>
-                  </div>
-                  <div className="p-6">
+                <TerminalWindow key={edu.id} title="education.json" interactive>
+                  <div className="p-6 -mt-4">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <motion.div 
+                        className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <GraduationCap className="w-6 h-6 text-primary" />
-                      </div>
+                      </motion.div>
                       <div>
                         <h3 className="font-semibold text-foreground">{edu.degree}</h3>
                         <p className="text-primary font-mono text-sm">{edu.major}</p>
@@ -70,18 +65,23 @@ export const EducationSection = () => {
                         <h4 className="font-mono text-sm text-foreground">coursework[]</h4>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {edu.coursework.map((course) => (
-                          <span
+                        {edu.coursework.map((course, i) => (
+                          <motion.span
                             key={course}
                             className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.03 }}
                           >
                             {course}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
                   </div>
-                </div>
+                </TerminalWindow>
               ))}
             </motion.div>
 
@@ -93,14 +93,8 @@ export const EducationSection = () => {
               className="space-y-6"
             >
               {/* Certifications */}
-              <div className="terminal-window">
-                <div className="terminal-header">
-                  <div className="terminal-dot terminal-dot-red" />
-                  <div className="terminal-dot terminal-dot-yellow" />
-                  <div className="terminal-dot terminal-dot-green" />
-                  <span className="ml-4 text-xs text-muted-foreground font-mono">certifications.json</span>
-                </div>
-                <div className="p-6">
+              <TerminalWindow title="certifications.json" interactive>
+                <div className="p-6 -mt-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Award className="w-5 h-5 text-primary" />
                     <h3 className="font-mono text-foreground">Certifications</h3>
@@ -112,7 +106,8 @@ export const EducationSection = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-border"
+                        whileHover={{ x: 5, backgroundColor: 'hsl(var(--primary) / 0.05)' }}
+                        className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-border transition-colors"
                       >
                         <BadgeCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                         <div>
@@ -125,17 +120,11 @@ export const EducationSection = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </TerminalWindow>
 
               {/* Achievements */}
-              <div className="terminal-window">
-                <div className="terminal-header">
-                  <div className="terminal-dot terminal-dot-red" />
-                  <div className="terminal-dot terminal-dot-yellow" />
-                  <div className="terminal-dot terminal-dot-green" />
-                  <span className="ml-4 text-xs text-muted-foreground font-mono">achievements.json</span>
-                </div>
-                <div className="p-6">
+              <TerminalWindow title="achievements.json" interactive>
+                <div className="p-6 -mt-4">
                   <div className="flex items-center gap-2 mb-4">
                     <Trophy className="w-5 h-5 text-primary" />
                     <h3 className="font-mono text-foreground">Achievements</h3>
@@ -147,9 +136,14 @@ export const EducationSection = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-border"
+                        whileHover={{ x: 5, backgroundColor: 'hsl(var(--primary) / 0.05)' }}
+                        className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-border transition-colors"
                       >
-                        <span className="text-primary">▹</span>
+                        <motion.span 
+                          className="text-primary"
+                          animate={{ x: [0, 3, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >▹</motion.span>
                         <div>
                           <p className="font-medium text-foreground text-sm">{achievement.title}</p>
                           <p className="text-muted-foreground text-xs font-mono">{achievement.issuer}</p>
@@ -158,7 +152,7 @@ export const EducationSection = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </TerminalWindow>
             </motion.div>
           </div>
         </motion.div>

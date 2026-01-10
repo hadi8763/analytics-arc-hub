@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Send, Github, Linkedin, Mail, MapPin, CheckCircle, Terminal } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TerminalWindow } from '@/components/TerminalWindow';
+import { siteConfig, sectionNumbers } from '@/constants/siteConfig';
 
 export const ContactSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { ref, isInView } = useScrollReveal();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -52,12 +54,7 @@ export const ContactSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-primary font-mono text-sm">07.</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Contact</h2>
-            <div className="flex-1 h-px bg-border ml-4" />
-          </div>
+          <SectionHeader number={sectionNumbers.contact} title="Contact" />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Terminal Style Contact Info */}
@@ -66,71 +63,69 @@ export const ContactSection = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="terminal-window h-full">
-                <div className="terminal-header">
-                  <div className="terminal-dot terminal-dot-red" />
-                  <div className="terminal-dot terminal-dot-yellow" />
-                  <div className="terminal-dot terminal-dot-green" />
-                  <span className="ml-4 text-xs text-muted-foreground font-mono">contact.sh</span>
-                </div>
-                <div className="terminal-body">
-                  <div className="space-y-4">
-                    <p>
-                      <span className="text-primary">guest@abdullah.dev</span>
-                      <span className="text-muted-foreground">:~$ </span>
-                      <span className="text-foreground">cat contact_info.txt</span>
+              <TerminalWindow title="contact.sh" className="h-full">
+                <div className="space-y-4">
+                  <p>
+                    <span className="text-primary">{siteConfig.terminal.prompt}</span>
+                    <span className="text-muted-foreground">:~$ </span>
+                    <span className="text-foreground">cat contact_info.txt</span>
+                  </p>
+                  
+                  <div className="pl-4 space-y-3 text-muted-foreground">
+                    <p className="flex items-center gap-3">
+                      <Mail className="w-4 h-4 text-primary" />
+                      <span>{siteConfig.email}</span>
                     </p>
-                    
-                    <div className="pl-4 space-y-3 text-muted-foreground">
-                      <p className="flex items-center gap-3">
-                        <Mail className="w-4 h-4 text-primary" />
-                        <span>abdullahhadi@email.com</span>
-                      </p>
-                      <p className="flex items-center gap-3">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <span>Kedah, Malaysia</span>
-                      </p>
-                    </div>
-
-                    <p className="pt-4">
-                      <span className="text-primary">guest@abdullah.dev</span>
-                      <span className="text-muted-foreground">:~$ </span>
-                      <span className="text-foreground">ls socials/</span>
-                    </p>
-
-                    <div className="flex gap-4 pl-4">
-                      <a
-                        href="https://github.com/abdullahhadi"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="https://linkedin.com/in/abdullahhadi"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="mailto:abdullahhadi@email.com"
-                        className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
-                      >
-                        <Mail className="w-5 h-5" />
-                      </a>
-                    </div>
-
-                    <p className="pt-4">
-                      <span className="text-primary">guest@abdullah.dev</span>
-                      <span className="text-muted-foreground">:~$ </span>
-                      <span className="typing-cursor" />
+                    <p className="flex items-center gap-3">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>{siteConfig.location}</span>
                     </p>
                   </div>
+
+                  <p className="pt-4">
+                    <span className="text-primary">{siteConfig.terminal.prompt}</span>
+                    <span className="text-muted-foreground">:~$ </span>
+                    <span className="text-foreground">ls socials/</span>
+                  </p>
+
+                  <div className="flex gap-4 pl-4">
+                    <motion.a
+                      href={siteConfig.socials.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Github className="w-5 h-5" />
+                    </motion.a>
+                    <motion.a
+                      href={siteConfig.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </motion.a>
+                    <motion.a
+                      href={siteConfig.socials.email}
+                      className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Mail className="w-5 h-5" />
+                    </motion.a>
+                  </div>
+
+                  <p className="pt-4">
+                    <span className="text-primary">{siteConfig.terminal.prompt}</span>
+                    <span className="text-muted-foreground">:~$ </span>
+                    <span className="typing-cursor" />
+                  </p>
                 </div>
-              </div>
+              </TerminalWindow>
             </motion.div>
 
             {/* Contact Form */}
@@ -153,9 +148,13 @@ export const ContactSection = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center justify-center text-center py-8"
                     >
-                      <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                      <motion.div 
+                        className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4"
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <CheckCircle className="w-8 h-8 text-primary" />
-                      </div>
+                      </motion.div>
                       <h3 className="text-xl font-semibold text-foreground mb-2 font-mono">Message Sent!</h3>
                       <p className="text-muted-foreground mb-6 font-mono text-sm">
                         Thank you for reaching out. I'll get back to you soon.
@@ -229,10 +228,15 @@ export const ContactSection = () => {
                         )}
                       </div>
 
-                      <button type="submit" className="btn-primary w-full">
+                      <motion.button 
+                        type="submit" 
+                        className="btn-primary w-full"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
                         <Terminal className="w-4 h-4" />
                         ./send_message.sh
-                      </button>
+                      </motion.button>
                     </form>
                   )}
                 </div>
