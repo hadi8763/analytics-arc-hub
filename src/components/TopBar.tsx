@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Home, Terminal } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export const TopBar = () => {
   return (
@@ -24,14 +25,17 @@ export const TopBar = () => {
         <span className="typing-cursor" />
       </div>
 
-      {/* Right: Terminal Badge */}
-      <a
-        href="#contact"
-        className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/30 rounded text-primary text-sm font-mono hover:bg-primary/20 transition-all"
-      >
-        <Terminal className="w-4 h-4" />
-        <span className="hidden sm:inline">Terminal</span>
-      </a>
+      {/* Right: Theme Toggle & Terminal Badge */}
+      <div className="flex items-center gap-3">
+        <ThemeToggle />
+        <a
+          href="#contact"
+          className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/30 rounded text-primary text-sm font-mono hover:bg-primary/20 transition-all"
+        >
+          <Terminal className="w-4 h-4" />
+          <span className="hidden sm:inline">Terminal</span>
+        </a>
+      </div>
     </motion.header>
   );
 };

@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Briefcase, MapPin, Calendar } from 'lucide-react';
 import { experiences } from '@/data/experience';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TerminalWindow } from '@/components/TerminalWindow';
+import { sectionNumbers } from '@/constants/siteConfig';
 
 export const ExperienceSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { ref, isInView } = useScrollReveal();
 
   return (
     <section id="experience" className="section-padding">
@@ -17,18 +18,19 @@ export const ExperienceSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-primary font-mono text-sm">05.</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Experience</h2>
-            <div className="flex-1 h-px bg-border ml-4" />
-          </div>
+          <SectionHeader number={sectionNumbers.experience} title="Experience" />
 
           <div className="max-w-3xl mx-auto">
             {/* Timeline */}
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
+              <motion.div 
+                className="absolute left-4 top-0 bottom-0 w-px bg-border"
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : {}}
+                transition={{ duration: 1 }}
+                style={{ originY: 0 }}
+              />
 
               {experiences.map((exp, index) => (
                 <motion.div
@@ -39,18 +41,21 @@ export const ExperienceSection = () => {
                   className="relative mb-8 last:mb-0 pl-12"
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute left-2 top-2 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                  </div>
+                  <motion.div 
+                    className="absolute left-2 top-2 w-5 h-5 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ delay: index * 0.2 + 0.3, type: 'spring' }}
+                  >
+                    <motion.div 
+                      className="w-2 h-2 rounded-full bg-primary"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </motion.div>
 
-                  <div className="terminal-window">
-                    <div className="terminal-header">
-                      <div className="terminal-dot terminal-dot-red" />
-                      <div className="terminal-dot terminal-dot-yellow" />
-                      <div className="terminal-dot terminal-dot-green" />
-                      <span className="ml-4 text-xs text-muted-foreground font-mono">experience_{index + 1}.json</span>
-                    </div>
-                    <div className="p-6">
+                  <TerminalWindow title={`experience_${index + 1}.json`} interactive>
+                    <div className="p-6 -mt-4">
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                         <div>
@@ -75,29 +80,42 @@ export const ExperienceSection = () => {
                       {/* Description */}
                       <ul className="space-y-2 mb-4">
                         {exp.description.map((item, i) => (
-                          <li
+                          <motion.li
                             key={i}
                             className="flex items-start gap-2 text-muted-foreground text-sm"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
                           >
-                            <span className="text-primary mt-0.5">▹</span>
+                            <motion.span 
+                              className="text-primary mt-0.5"
+                              animate={{ x: [0, 3, 0] }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                            >▹</motion.span>
                             <span>{item}</span>
-                          </li>
+                          </motion.li>
                         ))}
                       </ul>
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech) => (
-                          <span
+                        {exp.technologies.map((tech, i) => (
+                          <motion.span
                             key={tech}
                             className="px-2 py-1 text-xs font-mono bg-primary/10 text-primary rounded"
+                            whileHover={{ scale: 1.1 }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.05 }}
                           >
                             {tech}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </TerminalWindow>
                 </motion.div>
               ))}
             </div>

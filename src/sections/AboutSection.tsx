@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { MapPin, BarChart3, Brain, Users, BookOpen } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TerminalWindow } from '@/components/TerminalWindow';
+import { TiltCard } from '@/components/TiltCard';
+import { siteConfig, sectionNumbers } from '@/constants/siteConfig';
 
 const highlights = [
   {
@@ -27,8 +30,7 @@ const highlights = [
 ];
 
 export const AboutSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { ref, isInView } = useScrollReveal();
 
   return (
     <section id="about" className="section-padding">
@@ -39,24 +41,13 @@ export const AboutSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <span className="text-primary font-mono text-sm">01.</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">About Me</h2>
-            <div className="flex-1 h-px bg-border ml-4" />
-          </div>
+          <SectionHeader number={sectionNumbers.about} title="About Me" />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Text Content */}
             <div>
-              <div className="terminal-window mb-6">
-                <div className="terminal-header">
-                  <div className="terminal-dot terminal-dot-red" />
-                  <div className="terminal-dot terminal-dot-yellow" />
-                  <div className="terminal-dot terminal-dot-green" />
-                  <span className="ml-4 text-xs text-muted-foreground font-mono">about_me.md</span>
-                </div>
-                <div className="terminal-body space-y-4 text-muted-foreground">
+              <TerminalWindow title="about_me.md" className="mb-6">
+                <div className="space-y-4 text-muted-foreground">
                   <p>
                     Final-year Computer Science student majoring in <span className="text-primary">Data Science</span> with 
                     hands-on experience in data analysis, reporting, and dashboard development.
@@ -72,30 +63,43 @@ export const AboutSection = () => {
                     transform data into actionable insights.
                   </p>
                 </div>
-              </div>
+              </TerminalWindow>
 
-              <div className="flex items-center gap-2 text-muted-foreground font-mono text-sm">
+              <motion.div 
+                className="flex items-center gap-2 text-muted-foreground font-mono text-sm"
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.4 }}
+              >
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Kedah, Malaysia</span>
-              </div>
+                <span>{siteConfig.location}</span>
+              </motion.div>
             </div>
 
             {/* Highlights Grid */}
             <div className="grid grid-cols-2 gap-4">
               {highlights.map((item, index) => (
-                <motion.div
+                <TiltCard
                   key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  className="card-base card-hover p-4"
+                  className="p-4"
+                  maxTilt={8}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h4 className="font-semibold text-foreground text-sm mb-1">{item.title}</h4>
-                  <p className="text-muted-foreground text-xs">{item.description}</p>
-                </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                  >
+                    <motion.div 
+                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </motion.div>
+                    <h4 className="font-semibold text-foreground text-sm mb-1">{item.title}</h4>
+                    <p className="text-muted-foreground text-xs">{item.description}</p>
+                  </motion.div>
+                </TiltCard>
               ))}
             </div>
           </div>
