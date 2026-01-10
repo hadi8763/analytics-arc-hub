@@ -13,14 +13,14 @@ export interface Publication {
 export const publications: Publication[] = [
   {
     id: "mental-health-ml",
-    title: "A Comparative Analysis of Machine Learning Approaches for Mental Health Detection in Social Media Text",
-    authors: ["Abdullah Al Hadi", "Supervisor Name"],
-    abstract: "This research presents a comprehensive comparative analysis of various machine learning algorithms for detecting mental health indicators in social media text. We evaluate the performance of Support Vector Machines, Logistic Regression, Naive Bayes, and Random Forest classifiers using TF-IDF vectorization on a curated dataset. Our experimental results demonstrate that ensemble methods achieve superior performance with accuracy rates up to 92%. The study contributes to the growing body of research on automated mental health screening tools and provides insights into feature engineering techniques for text classification in healthcare applications.",
-    conference: "International Conference on Data Science and Machine Learning",
-    year: 2024,
-    keywords: ["Machine Learning", "Mental Health", "NLP", "Text Classification", "TF-IDF"],
-    pdfUrl: "#",
-    doi: "10.xxxx/xxxxx"
+    title: "Machine Learning Framework for Early Detection of Mental Health Conditions from Textual Data",
+    authors: ["B. Riskhan", "Abdullah Al Hadi", "S. M. A. I. Saky", "M. S. Arefin", "K. Hussain"],
+    abstract: "This research presents a machine learning framework for the early detection of mental health conditions from textual data. The study evaluates various machine learning algorithms and natural language processing techniques to identify mental health indicators, contributing to automated screening tools and early intervention strategies.",
+    conference: "Proceedings of The International Conference on Data Science and Official Statistics",
+    year: 2025,
+    keywords: ["Machine Learning", "Mental Health", "NLP", "Text Classification", "Early Detection"],
+    pdfUrl: "https://doi.org/10.34123/icdsos.v2025i1.613",
+    doi: "10.34123/icdsos.v2025i1.613"
   },
   {
     id: "phishing-detection-hybrid",
