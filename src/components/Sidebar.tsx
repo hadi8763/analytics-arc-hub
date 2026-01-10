@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, User, Code2, FolderKanban, FileText, Briefcase, 
   GraduationCap, Mail, Download, Github, Linkedin, 
   Menu, X, Circle
 } from 'lucide-react';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const navItems = [
   { name: 'Home', href: '#home', icon: Home, file: 'home/' },
@@ -20,6 +21,7 @@ const navItems = [
 export const Sidebar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { scrollToSection } = useSmoothScroll({ offset: -80 });
 
   // Track active section on scroll
   useEffect(() => {
@@ -40,10 +42,16 @@ export const Sidebar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = (href: string) => {
-    setActiveSection(href.replace('#', ''));
+  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const sectionId = href.replace('#', '');
+    setActiveSection(sectionId);
     setIsMobileOpen(false);
-  };
+    scrollToSection(sectionId);
+    
+    // Update URL hash without triggering scroll
+    window.history.pushState(null, '', href);
+  }, [scrollToSection]);
 
   return (
     <>
@@ -102,7 +110,7 @@ export const Sidebar = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                onClick={() => handleClick(item.href)}
+                onClick={(e) => handleClick(e, item.href)}
                 className={`file-item ${activeSection === item.href.replace('#', '') ? 'active' : ''}`}
                 whileHover={{ x: 4, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

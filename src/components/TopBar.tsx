@@ -1,8 +1,17 @@
 import { motion } from 'framer-motion';
 import { Home, Terminal } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 export const TopBar = () => {
+  const { scrollToSection } = useSmoothScroll({ offset: -80 });
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    scrollToSection('contact');
+    window.history.pushState(null, '', '#contact');
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -12,9 +21,18 @@ export const TopBar = () => {
       {/* Left: Dots */}
       <div className="flex items-center gap-2">
         <div className="hidden lg:flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <motion.div 
+            className="w-3 h-3 rounded-full bg-red-500"
+            whileHover={{ scale: 1.2 }}
+          />
+          <motion.div 
+            className="w-3 h-3 rounded-full bg-yellow-500"
+            whileHover={{ scale: 1.2 }}
+          />
+          <motion.div 
+            className="w-3 h-3 rounded-full bg-green-500"
+            whileHover={{ scale: 1.2 }}
+          />
         </div>
       </div>
 
@@ -28,13 +46,15 @@ export const TopBar = () => {
       {/* Right: Theme Toggle & Terminal Badge */}
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <a
-          href="#contact"
+        <motion.button
+          onClick={handleContactClick}
           className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/30 rounded text-primary text-sm font-mono hover:bg-primary/20 transition-all"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <Terminal className="w-4 h-4" />
           <span className="hidden sm:inline">Terminal</span>
-        </a>
+        </motion.button>
       </div>
     </motion.header>
   );
