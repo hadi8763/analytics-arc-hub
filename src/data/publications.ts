@@ -21,16 +21,5 @@ export const publications: Publication[] = [
     keywords: ["Machine Learning", "Mental Health", "NLP", "Text Classification", "Early Detection"],
     pdfUrl: "https://doi.org/10.34123/icdsos.v2025i1.613",
     doi: "10.34123/icdsos.v2025i1.613"
-  },
-  {
-    id: "phishing-detection-hybrid",
-    title: "Hybrid Deep Learning Architecture for Phishing Email Detection: Combining CNN, BiLSTM, and Graph Neural Networks",
-    authors: ["Abdullah Al Hadi", "Research Supervisor"],
-    abstract: "Phishing attacks continue to pose significant cybersecurity threats, necessitating advanced detection mechanisms. This paper proposes a novel hybrid deep learning architecture that synergistically combines Convolutional Neural Networks (CNN), Bidirectional Long Short-Term Memory (BiLSTM), and Graph Convolutional Networks (GCN) for phishing email detection. Our approach leverages CNN for local feature extraction, BiLSTM for sequential pattern recognition, and GCN for capturing structural relationships within email content. Experimental evaluation on benchmark datasets demonstrates that our hybrid model outperforms traditional machine learning and single-architecture deep learning approaches.",
-    conference: "IEEE International Conference on Cybersecurity and AI",
-    year: 2025,
-    keywords: ["Deep Learning", "Cybersecurity", "Phishing Detection", "CNN", "BiLSTM", "GCN", "NLP"],
-    pdfUrl: "#",
-    doi: "pending"
   }
 ];
