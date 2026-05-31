@@ -21,5 +21,16 @@ export const publications: Publication[] = [
     keywords: ["Machine Learning", "Mental Health", "NLP", "Text Classification", "Early Detection"],
     pdfUrl: "https://doi.org/10.34123/icdsos.v2025i1.613",
     doi: "10.34123/icdsos.v2025i1.613"
+  },
+  {
+    id: "phishing-detection-nlp",
+    title: "A Hybrid NLP and Deep Learning Framework for Phishing Detection in Emails and URLs",
+    authors: ["Basheer Riskhan", "Md Saiful Arefin", "Mutasim Billah", "Abdullah Al Hadi", "Siti Shafrah Shahawai", "Siva Raja Sindiramutty", "Noor Zaman Jhanjhi"],
+    abstract: "This study proposes a hybrid framework combining natural language processing and deep learning techniques for phishing detection in emails and URLs. The model integrates TF-IDF feature extraction with a CNN-BiLSTM architecture to capture both spatial and sequential patterns in textual data, achieving robust detection accuracy against evolving phishing attacks.",
+    conference: "Journal of Information Technology and Digital Education Technology Studies",
+    year: 2025,
+    keywords: ["Phishing Detection", "Deep Learning", "NLP", "CNN-BiLSTM", "TF-IDF", "Hybrid Model", "Cybersecurity"],
+    pdfUrl: "https://doi.org/10.33150/JITDETS-9.2.5",
+    doi: "10.33150/JITDETS-9.2.5"
   }
 ];
