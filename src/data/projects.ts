@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   longDescription: string;
   techStack: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   image?: string;
   highlights: string[];
@@ -12,59 +12,108 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "mental-health-detection",
-    title: "Mental Health Detection Using Machine Learning",
-    description: "Text classification system for mental health analysis using multiple ML models with up to 92% accuracy.",
-    longDescription: "Developed a comprehensive text classification pipeline for mental health detection using TF-IDF vectorization and ensemble machine learning techniques. The system analyzes textual data to identify potential mental health indicators.",
-    techStack: ["Python", "NLTK", "Scikit-learn", "TF-IDF", "SVM", "Random Forest"],
-    githubUrl: "https://github.com/abdullahhadi",
+    id: "phishguard",
+    title: "PhishGuard — Final Year Project",
+    description: "Hybrid CNN-BiLSTM phishing detection system with a Flask web app for real-time email and URL prediction.",
+    longDescription: "Developed a hybrid CNN-BiLSTM phishing detection system using NLP and Python, with a Flask-based web application for real-time phishing prediction from email and URL data.",
+    techStack: ["Python", "TensorFlow", "NLP", "CNN", "BiLSTM", "Flask"],
+    githubUrl: "https://github.com/hadi8763/PhishGuard-FYP",
     highlights: [
-      "Implemented TF-IDF text vectorization",
-      "Trained SVM, Logistic Regression, Naive Bayes, Random Forest models",
-      "Achieved up to 92% classification accuracy",
-      "Comprehensive model evaluation and comparison"
+      "Hybrid CNN-BiLSTM architecture",
+      "NLP-based text preprocessing pipeline",
+      "Flask web application for real-time prediction",
+      "Email and URL phishing classification"
     ]
   },
   {
-    id: "phishing-detection",
-    title: "Phishing Email Detection Using NLP & Deep Learning",
-    description: "Final Year Project: Hybrid deep learning model combining CNN, BiLSTM, and GCN for email classification.",
-    longDescription: "Developing a state-of-the-art phishing email detection system using a hybrid architecture that combines Convolutional Neural Networks, Bidirectional LSTM, and Graph Convolutional Networks with attention mechanisms for superior text understanding.",
-    techStack: ["Python", "TensorFlow", "Keras", "NLTK", "CNN", "BiLSTM", "GCN"],
-    githubUrl: "https://github.com/abdullahhadi",
+    id: "loan-default-prediction",
+    title: "Loan Default Prediction Using Deep Learning",
+    description: "PyTorch deep learning model predicting loan defaults for the Zindi African Credit Scoring Challenge.",
+    longDescription: "Developed a PyTorch-based deep learning model to predict loan defaults using financial and demographic data for the Zindi African Credit Scoring Challenge, including data preprocessing, feature engineering, and model evaluation.",
+    techStack: ["Python", "PyTorch", "Deep Learning", "Feature Engineering"],
+    githubUrl: "https://github.com/hadi8763/zindi-african-credit-scoring-challenge",
     highlights: [
-      "Hybrid CNN + BiLSTM + GCN architecture",
-      "Advanced text preprocessing pipeline",
-      "Attention mechanism implementation",
-      "Spam vs Non-Spam binary classification"
+      "Financial and demographic data preprocessing",
+      "Feature engineering for credit scoring",
+      "Model training and evaluation in PyTorch"
+    ]
+  },
+  {
+    id: "political-sentiment",
+    title: "Political Sentiment Analysis using Machine Learning",
+    description: "NLP-based sentiment classification of political tweets using Logistic Regression, Linear SVC, and Random Forest.",
+    longDescription: "Developed an NLP-based sentiment classification system for political tweets using Logistic Regression, Linear SVC, and Random Forest, with text preprocessing, feature engineering, model evaluation, and data visualization.",
+    techStack: ["Python", "NLP", "Scikit-learn", "Logistic Regression", "Linear SVC", "Random Forest"],
+    githubUrl: "https://github.com/hadi8763/political-sentiment-analysis",
+    highlights: [
+      "Text preprocessing and feature engineering",
+      "Comparison of multiple classification models",
+      "Model evaluation and data visualization"
+    ]
+  },
+  {
+    id: "icms-uum",
+    title: "ICMS UUM Conference Website — Frontend Developer",
+    description: "Frontend development for an academic conference website built with HTML, CSS, JavaScript, and Bootstrap.",
+    longDescription: "Designed the frontend using HTML, CSS, JavaScript, and Bootstrap, collaborated with the client on requirements, and provided design recommendations to improve the website.",
+    techStack: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+    liveUrl: "https://icmsuum.com/",
+    highlights: [
+      "Responsive frontend implementation",
+      "Client collaboration on requirements",
+      "Design recommendations for improvements"
+    ]
+  },
+  {
+    id: "ml-sports-housing",
+    title: "Machine Learning for Sports and Housing Data Analysis",
+    description: "Supervised learning for football match outcomes and unsupervised clustering of housing data.",
+    longDescription: "Applied supervised learning to predict football match outcomes using SVM and Logistic Regression, and unsupervised learning to analyze housing data using K-Means and Hierarchical Clustering. Compared model performance and extracted insights from real-world datasets.",
+    techStack: ["Python", "Scikit-learn", "SVM", "Logistic Regression", "K-Means", "Hierarchical Clustering"],
+    githubUrl: "https://github.com/hadi8763/ml-final-project",
+    highlights: [
+      "Supervised prediction of football match outcomes",
+      "K-Means and Hierarchical clustering on housing data",
+      "Model performance comparison"
     ]
   },
   {
     id: "airbnb-dashboard",
-    title: "New York Airbnb Dashboard",
-    description: "Interactive Power BI dashboard for analyzing NYC Airbnb listings, pricing trends, and neighborhood insights.",
-    longDescription: "Created a comprehensive business intelligence dashboard to analyze New York City Airbnb data, providing actionable insights on pricing strategies, occupancy rates, and neighborhood performance metrics.",
+    title: "NYC Airbnb Market Analysis — Power BI",
+    description: "Interactive Power BI dashboard analyzing Airbnb pricing, room types, neighborhoods, and host characteristics in New York City.",
+    longDescription: "Created an interactive Power BI dashboard to analyze Airbnb pricing, room types, neighborhoods, and host characteristics in New York City.",
     techStack: ["Power BI", "DAX", "Data Modeling", "Excel"],
-    githubUrl: "https://github.com/abdullahhadi",
+    githubUrl: "https://github.com/hadi8763/NY-Airbnb-Dashboard",
     highlights: [
-      "Interactive pricing analysis visualizations",
-      "Occupancy rate tracking by neighborhood",
-      "Geographic mapping of listings",
-      "Trend analysis and forecasting"
+      "Pricing analysis across neighborhoods",
+      "Room type and host characteristic breakdown",
+      "Interactive dashboard visuals"
     ]
   },
   {
-    id: "twitter-sentiment",
-    title: "Real-Time Twitter Sentiment Analysis Dashboard",
-    description: "Tableau dashboard for real-time sentiment analysis with hashtag tracking, engagement metrics, and geo insights.",
-    longDescription: "Built an interactive Tableau dashboard that visualizes Twitter sentiment in real-time, tracking trending hashtags, user engagement patterns, and geographic distribution of tweets.",
-    techStack: ["Tableau", "Python", "NLP", "Twitter API", "Data Visualization"],
-    githubUrl: "https://github.com/abdullahhadi",
+    id: "hypothesis-testing-r",
+    title: "Hypothesis Testing & Statistical Analysis — R",
+    description: "T-test based analysis of customer sales to identify significant differences in spending.",
+    longDescription: "Used R and T-tests to analyze customer sales and identify significant differences in average spending and spending by gender.",
+    techStack: ["R", "Statistics", "Hypothesis Testing"],
+    githubUrl: "https://github.com/hadi8763/hypothesis-testing-r",
     highlights: [
-      "Real-time sentiment classification",
-      "Trending hashtag analysis",
-      "Engagement metrics visualization",
-      "Geographic sentiment mapping"
+      "T-tests on customer sales data",
+      "Analysis of average spending differences",
+      "Spending comparison by gender"
+    ]
+  },
+  {
+    id: "mental-health-detection",
+    title: "Mental Health Prediction from Social Media Text",
+    description: "Machine learning applied to social media text to detect mental health conditions.",
+    longDescription: "Applied machine learning to social media text to detect mental health conditions using SVM, Logistic Regression, Random Forest, and Naive Bayes.",
+    techStack: ["Python", "NLP", "Scikit-learn", "SVM", "Random Forest", "Naive Bayes"],
+    githubUrl: "https://github.com/hadi8763/mental-health-detection-using-machine-learning",
+    highlights: [
+      "Text-based mental health classification",
+      "SVM, Logistic Regression, Random Forest, Naive Bayes",
+      "Model comparison and evaluation"
     ]
   }
 ];
