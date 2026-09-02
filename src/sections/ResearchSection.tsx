@@ -51,13 +51,29 @@ export const ResearchSection = () => {
                             <h3 className="text-lg font-semibold text-foreground mb-1 hover-glow">
                               {pub.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground mb-2">
-                              {pub.authors.join(', ')}
-                            </p>
+                            {pub.authors && pub.authors.length > 0 && (
+                              <p className="text-sm text-muted-foreground mb-2">
+                                {pub.authors.join(', ')}
+                              </p>
+                            )}
                             <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground font-mono">
-                              <span className="text-primary">{pub.conference}</span>
-                              <span>•</span>
+                              {pub.conference && (
+                                <>
+                                  <span className="text-primary">{pub.conference}</span>
+                                  <span>•</span>
+                                </>
+                              )}
                               <span>{pub.year}</span>
+                              <span>•</span>
+                              <span className={`px-2 py-0.5 rounded ${
+                                pub.status === 'Published'
+                                  ? 'bg-primary/10 text-primary'
+                                  : pub.status === 'Accepted'
+                                    ? 'bg-secondary text-foreground'
+                                    : 'bg-secondary text-muted-foreground'
+                              }`}>
+                                {pub.status}
+                              </span>
                             </div>
                           </div>
 
@@ -90,6 +106,7 @@ export const ResearchSection = () => {
                         </div>
 
                         {/* Keywords */}
+                        {pub.keywords && pub.keywords.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-3">
                           {pub.keywords.map((keyword, i) => (
                             <motion.span
