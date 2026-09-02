@@ -160,6 +160,8 @@ export const ResearchSection = () => {
                             </motion.div>
                           )}
                         </AnimatePresence>
+                        </>
+                        )}
                       </div>
                     </div>
                   </div>
