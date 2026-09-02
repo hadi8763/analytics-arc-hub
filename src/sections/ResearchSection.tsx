@@ -107,23 +107,26 @@ export const ResearchSection = () => {
 
                         {/* Keywords */}
                         {pub.keywords && pub.keywords.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {pub.keywords.map((keyword, i) => (
-                            <motion.span
-                              key={keyword}
-                              className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
-                              whileHover={{ scale: 1.1, y: -2 }}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: i * 0.05 }}
-                            >
-                              {keyword}
-                            </motion.span>
-                          ))}
-                        </div>
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {pub.keywords.map((keyword, i) => (
+                              <motion.span
+                                key={keyword}
+                                className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.05 }}
+                              >
+                                {keyword}
+                              </motion.span>
+                            ))}
+                          </div>
+                        )}
 
                         {/* Abstract Toggle */}
+                        {pub.abstract && (
+                        <>
                         <motion.button
                           onClick={() => toggleExpand(pub.id)}
                           className="flex items-center gap-2 mt-4 text-sm text-primary hover:text-primary/80 transition-colors font-mono"
