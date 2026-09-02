@@ -6,7 +6,7 @@
 export const siteConfig = {
   // Personal Info
   name: 'Abdullah Al Hadi',
-  role: 'Data Scientist',
+  role: 'Computer Science Graduate',
   passion: 'Machine Learning',
   location: 'Kedah, Malaysia',
   email: 'abdullahhadi@email.com',
@@ -20,8 +20,8 @@ export const siteConfig = {
   },
   
   // SEO
-  title: 'Abdullah Al Hadi | Data Science Portfolio',
-  description: 'Portfolio of Abdullah Al Hadi - Final-year Computer Science student specializing in Data Science, Machine Learning, and Analytics.',
+  title: 'Abdullah Al Hadi | Data Science & AI Portfolio',
+  description: 'Portfolio of Abdullah Al Hadi - Computer Science graduate specializing in Data Science, Machine Learning, Generative AI, and AI Automation.',
   
   // Terminal theming
   terminal: {
