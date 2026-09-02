@@ -51,13 +51,29 @@ export const ResearchSection = () => {
                             <h3 className="text-lg font-semibold text-foreground mb-1 hover-glow">
                               {pub.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground mb-2">
-                              {pub.authors.join(', ')}
-                            </p>
+                            {pub.authors && pub.authors.length > 0 && (
+                              <p className="text-sm text-muted-foreground mb-2">
+                                {pub.authors.join(', ')}
+                              </p>
+                            )}
                             <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground font-mono">
-                              <span className="text-primary">{pub.conference}</span>
-                              <span>•</span>
+                              {pub.conference && (
+                                <>
+                                  <span className="text-primary">{pub.conference}</span>
+                                  <span>•</span>
+                                </>
+                              )}
                               <span>{pub.year}</span>
+                              <span>•</span>
+                              <span className={`px-2 py-0.5 rounded ${
+                                pub.status === 'Published'
+                                  ? 'bg-primary/10 text-primary'
+                                  : pub.status === 'Accepted'
+                                    ? 'bg-secondary text-foreground'
+                                    : 'bg-secondary text-muted-foreground'
+                              }`}>
+                                {pub.status}
+                              </span>
                             </div>
                           </div>
 
@@ -90,23 +106,27 @@ export const ResearchSection = () => {
                         </div>
 
                         {/* Keywords */}
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {pub.keywords.map((keyword, i) => (
-                            <motion.span
-                              key={keyword}
-                              className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
-                              whileHover={{ scale: 1.1, y: -2 }}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: i * 0.05 }}
-                            >
-                              {keyword}
-                            </motion.span>
-                          ))}
-                        </div>
+                        {pub.keywords && pub.keywords.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {pub.keywords.map((keyword, i) => (
+                              <motion.span
+                                key={keyword}
+                                className="px-2 py-1 text-xs font-mono bg-secondary text-muted-foreground rounded"
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.05 }}
+                              >
+                                {keyword}
+                              </motion.span>
+                            ))}
+                          </div>
+                        )}
 
                         {/* Abstract Toggle */}
+                        {pub.abstract && (
+                        <>
                         <motion.button
                           onClick={() => toggleExpand(pub.id)}
                           className="flex items-center gap-2 mt-4 text-sm text-primary hover:text-primary/80 transition-colors font-mono"
@@ -140,6 +160,8 @@ export const ResearchSection = () => {
                             </motion.div>
                           )}
                         </AnimatePresence>
+                        </>
+                        )}
                       </div>
                     </div>
                   </div>

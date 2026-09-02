@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Code2, Layers, Database, Wrench } from 'lucide-react';
+import { Code2, Layers, Database, Wrench, Server, Users } from 'lucide-react';
 import { skillCategories } from '@/data/skills';
 import { InteractiveTerminal } from '@/components/InteractiveTerminal';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -12,6 +12,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Layers,
   Database,
   Wrench,
+  Server,
+  Users,
 };
 
 export const SkillsSection = () => {

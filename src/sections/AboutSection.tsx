@@ -49,18 +49,18 @@ export const AboutSection = () => {
               <TerminalWindow title="about_me.md" className="mb-6">
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Final-year Computer Science student majoring in <span className="text-primary">Data Science</span> with 
-                    hands-on experience in data analysis, reporting, and dashboard development.
+                    Computer Science graduate with interests in <span className="text-primary">Artificial Intelligence</span>, 
+                    <span className="text-primary"> Machine Learning</span>, <span className="text-primary">Deep Learning</span>, 
+                    <span className="text-primary"> Generative AI</span>, and <span className="text-primary">RAG</span>.
                   </p>
                   <p>
-                    Skilled in <span className="text-primary">Python</span>, <span className="text-primary">SQL</span>, 
-                    <span className="text-primary"> Excel</span>, <span className="text-primary">Tableau</span>, and 
-                    <span className="text-primary"> Power BI</span>, with strong foundations in data validation, 
-                    visualization, and machine learning.
+                    Experienced in <span className="text-primary">AI development</span>, 
+                    <span className="text-primary"> automation</span>, and 
+                    <span className="text-primary"> cybersecurity</span>, with a strong interest in applying 
+                    emerging technologies to real-world problems.
                   </p>
                   <p>
-                    Seeking opportunities as a Junior Data Analyst, Software Engineer, or Research Assistant to 
-                    transform data into actionable insights.
+                    Seeking to pursue a Master's by Research and contribute to impactful research in AI and related fields.
                   </p>
                 </div>
               </TerminalWindow>

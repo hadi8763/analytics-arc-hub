@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Calendar } from 'lucide-react';
-import { experiences } from '@/data/experience';
+import { Briefcase, MapPin, Calendar, Users } from 'lucide-react';
+import { experiences, leadership } from '@/data/experience';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SectionHeader } from '@/components/SectionHeader';
 import { TerminalWindow } from '@/components/TerminalWindow';
@@ -118,6 +118,53 @@ export const ExperienceSection = () => {
                   </TerminalWindow>
                 </motion.div>
               ))}
+            </div>
+
+            {/* Leadership & Management */}
+            <div className="mt-16">
+              <motion.h3
+                className="font-mono text-lg text-foreground mb-6 flex items-center gap-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4 }}
+              >
+                <Users className="w-5 h-5 text-primary" />
+                <span className="text-primary">$</span> cat leadership.md
+              </motion.h3>
+
+              <div className="space-y-4">
+                {leadership.map((role, index) => (
+                  <motion.div
+                    key={role.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                  >
+                    <TerminalWindow title={`leadership_${index + 1}.json`} interactive>
+                      <div className="p-6 -mt-4">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                          <div>
+                            <h4 className="font-semibold text-foreground">{role.title}</h4>
+                            <p className="text-primary font-mono text-sm mt-1">{role.organization}</p>
+                          </div>
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground font-mono shrink-0">
+                            <Calendar className="w-3 h-3" />
+                            <span>{role.duration}</span>
+                          </div>
+                        </div>
+                        <ul className="space-y-2">
+                          {role.description.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
+                              <span className="text-primary mt-0.5">▹</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </TerminalWindow>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
